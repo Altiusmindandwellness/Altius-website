@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Get a Free Quote | Altius Mind & Wellness Solutions</title>
+  <meta name="description" content="Get a free health insurance quote for yourself, your family or your business.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Petrona:wght@300;400;600&family=Pontano+Sans:wght@400;600&family=Cinzel:wght@400&family=Josefin+Sans:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=202611041212">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===== HEADER: menu left, title center, Instagram right ===== -->
+  <header class="site-header home-header">
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <div class="nav-item has-sub">   <!-- Coverage, with the coverage types underneath -->
+        <a href="coverage.html">Coverage</a>
+        <div class="nav-sub">
+          <a class="nav-sub-type" href="coverage.html#individual-plans">Individual Plans</a>
+          <a class="nav-sub-type" href="coverage.html#family-plans">Family Plans</a>
+          <a class="nav-sub-type" href="coverage.html#business-plans">Business Plans</a>
+          <a class="nav-sub-type" href="coverage.html#private-market">Private Market Plans</a>
+          <a class="nav-sub-type" href="coverage.html#entrepreneurs">Entrepreneurs &amp; Independent Contractors</a>
+          <a class="nav-sub-type" href="coverage.html#marketplace">Marketplace (ACA) Plans</a>
+          <a class="nav-sub-type" href="coverage.html#short-term">Short-Term Health Insurance</a>
+          <a class="nav-sub-type" href="coverage.html#dental-vision">Dental &amp; Vision</a>
+          <a class="nav-sub-type" href="coverage.html#employer-group">Employer Group Plans</a>
+        </div>
+      </div>
+      <a href="services.html" class="active" aria-current="page">Consultation</a>
+      <a href="blog.html">Blogs</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+
+    <a class="site-title" href="index.html">
+      <span class="site-title-logo" role="img" aria-label="Altius Mind and Wellness Solutions">
+        <img class="logo-circle" src="images/logo-circle.png" alt="">
+        <span class="logo-altius" aria-hidden="true">ALTIUS</span>
+        <span class="logo-sub" aria-hidden="true">MIND AND WELLNESS</span>
+        <span class="logo-solutions" aria-hidden="true">SOLUTIONS</span>
+      </span>
+    </a>
+
+    <div class="header-right">
+      <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Open menu</span>
+        <span class="bar"></span><span class="bar"></span>
+      </button>
+      <!-- small menu that opens from the two-line button on computers -->
+      <div class="extra-menu" id="extra-menu">   <!-- opens from the two-line button on every screen size -->
+        <a href="about.html">About Us</a>
+        <a class="extra-main" href="index.html">Home</a>
+        <a class="extra-main" href="coverage.html">Coverage</a>
+        <a class="extra-main" href="services.html">Consultation</a>
+        <a class="extra-main" href="blog.html">Blogs</a>
+        <a class="extra-main" href="faq.html">FAQ</a>
+        <a class="extra-main" href="contact.html">Contact Us</a>
+        <span class="extra-divider extra-main" aria-hidden="true"></span>
+        <a href="other-services.html">Other Services</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== STEP-BY-STEP QUOTE FORM =====
+         Submissions are emailed to you through FormSubmit (formsubmit.co).
+         The quote type (individual / family / business) comes from the link that opened this page. -->
+    <section class="quote-page">
+      <a class="post-back" href="services.html">&larr; Back to Services</a>
+      <h1 id="quote-title">Get Your Free Quote</h1>
+
+      <div class="quote-progress" aria-hidden="true"><div class="quote-progress-bar"></div></div>
+      <p class="quote-step-count">Step <span id="step-now">1</span> of <span id="step-total">7</span></p>
+
+      <form id="quote-form" novalidate>
+        <input type="hidden" name="quote_type" id="quote-type" value="Individual">
+        <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <fieldset class="quote-step" data-step="0">
+            <label for="f-first_name">What’s your first name?</label>
+            <input id="f-first_name" name="first_name" type="text" autocomplete="given-name" required>
+            <p class="quote-error" role="alert"></p>
+          </fieldset>
+          <fieldset class="quote-step" data-step="1" hidden>
+            <label for="f-last_name">What’s your last name?</label>
+            <input id="f-last_name" name="last_name" type="text" autocomplete="family-name" required>
+            <p class="quote-error" role="alert"></p>
+          </fieldset>
+          <fieldset class="quote-step" data-step="2" hidden>
+            <label for="f-phone">What’s the best phone number to reach you?</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555" required>
+            <p class="quote-error" role="alert"></p>
+          </fieldset>
+          <fieldset class="quote-step" data-step="3" hidden>
+            <label for="f-age">How old are you?</label>
+            <input id="f-age" name="age" type="number" inputmode="numeric" min="1" max="120" required>
+            <p class="quote-error" role="alert"></p>
+          </fieldset>
+          <fieldset class="quote-step" data-step="4" hidden>
+            <label for="f-email">What’s your email address?</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+            <p class="quote-error" role="alert"></p>
+          </fieldset>
+          <fieldset class="quote-step" data-step="5" hidden>
+            <label for="f-zip">What’s your ZIP code?</label>
+            <input id="f-zip" name="zip" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="5" placeholder="12345" required>
+            <p class="quote-error" role="alert"></p>
+          </fieldset>
+          <fieldset class="quote-step" data-only="business" hidden>
+            <label for="f-employees">How many employees does your business have?</label>
+            <input id="f-employees" name="employees" type="number" inputmode="numeric" min="1" max="100000" placeholder="e.g. 12" required>
+            <p class="quote-error" role="alert"></p>
+          </fieldset>
+          <fieldset class="quote-step" data-step="6" data-not="business" hidden>
+            <label for="f-income">What’s your estimated annual household income?</label>
+            <div class="money-input"><span>$</span><input id="f-income" name="income" type="text" inputmode="numeric" placeholder="50,000" required></div>
+            <p class="quote-error" role="alert"></p>
+          </fieldset>
+
+          <p class="quote-consent" hidden>By submitting, you agree that Altius Mind and Wellness Solutions may contact you by phone, text, or email about your quote. Your information is kept private and never sold.</p>
+
+          <div class="quote-buttons">
+            <button type="button" class="button button-outline" id="quote-back" hidden>Back</button>
+            <button type="submit" class="button" id="quote-next">Next</button>
+          </div>
+      </form>
+
+      <div class="quote-done" id="quote-done" hidden>
+        <h2>Thank you!</h2>
+        <p>We’ve received your information and will be in touch soon to go over your options.</p>
+        <a class="button" href="index.html">Back to home</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER: questions + contact ===== -->
+  <footer class="site-footer">
+    <div class="footer-cols">
+    <div class="footer-inner">
+      <p class="questions"><a href="contact.html">Contact us</a></p>   <!-- heading of the footer; links to the Contact page -->
+      <p class="contact-line"><span class="icon-circle" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7 L12 13 L20.5 7"/></svg></span><span class="sr-only">Email:</span> <a href="mailto:Shayhealthadvisor@gmail.com">Shayhealthadvisor@gmail.com</a></p>
+      <p class="contact-line"><span class="icon-circle" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5 h3.2 l1.6 4.2 -2.2 1.6 a12 12 0 0 0 7.1 7.1 l1.6 -2.2 4.2 1.6 v3.2 a2 2 0 0 1 -2.2 2 A17.5 17.5 0 0 1 3 5.7 a2 2 0 0 1 2 -2.2 z"/></svg></span><span class="sr-only">Phone:</span> <a href="tel:+19544087710">954-408-7710</a></p>
+      <p class="contact-line"><span class="icon-circle" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="#fff" stroke="none"/></svg></span><span class="sr-only">Instagram:</span> <a href="https://www.instagram.com/altiusmindandwellness/" target="_blank" rel="noopener">@altiusmindandwellness</a></p>
+      <p class="contact-line contact-hours"><span class="icon-circle" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5 V12 L15 14"/></svg></span><span><span class="sr-only">Office hours:</span>Mon–Fri: 8am–8pm ET<br>Sat–Sun: 9am–2pm ET</span></p>
+      <p class="license-line footer-license">Licensed Agent in 30+ states</p>
+    </div>
+      <div class="footer-company">   <!-- middle column -->
+        <p class="questions">Company</p>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=202611041212"></script>
+  <script src="quote.js?v=202611041212"></script>
+</body>
+</html>
