@@ -5,10 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Get a Free Quote | Altius Mind & Wellness Solutions</title>
   <meta name="description" content="Get a free health insurance quote for yourself, your family or your business.">
+  <link rel="canonical" href="https://altiusmindandwellness.com/quote.html">
+  <!-- share preview + icons -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Altius Mind &amp; Wellness Solutions">
+  <meta property="og:title" content="Get a Free Quote | Altius Mind &amp; Wellness Solutions">
+  <meta property="og:description" content="Get a free health insurance quote for yourself, your family or your business.">
+  <meta property="og:url" content="https://altiusmindandwellness.com/quote.html">
+  <meta property="og:image" content="https://altiusmindandwellness.com/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- /share -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Petrona:wght@300;400;600&family=Pontano+Sans:wght@400;600&family=Cinzel:wght@400&family=Josefin+Sans:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=202611041212">
+  <link rel="stylesheet" href="styles.css?v=202611051054">
 </head>
 <body>
 
@@ -23,13 +35,13 @@
         <div class="nav-sub">
           <a class="nav-sub-type" href="coverage.html#individual-plans">Individual Plans</a>
           <a class="nav-sub-type" href="coverage.html#family-plans">Family Plans</a>
-          <a class="nav-sub-type" href="coverage.html#business-plans">Business Plans</a>
+          <a class="nav-sub-type" href="coverage.html#business-plans">Business &amp; Group Plans</a>
           <a class="nav-sub-type" href="coverage.html#private-market">Private Market Plans</a>
           <a class="nav-sub-type" href="coverage.html#entrepreneurs">Entrepreneurs &amp; Independent Contractors</a>
           <a class="nav-sub-type" href="coverage.html#marketplace">Marketplace (ACA) Plans</a>
           <a class="nav-sub-type" href="coverage.html#short-term">Short-Term Health Insurance</a>
           <a class="nav-sub-type" href="coverage.html#dental-vision">Dental &amp; Vision</a>
-          <a class="nav-sub-type" href="coverage.html#employer-group">Employer Group Plans</a>
+          <a class="nav-sub-type nav-sub-calc" href="calculator.html">2027 Price Calculator</a>
         </div>
       </div>
       <a href="services.html" class="active" aria-current="page">Consultation</a>
@@ -56,6 +68,7 @@
         <a href="about.html">About Us</a>
         <a class="extra-main" href="index.html">Home</a>
         <a class="extra-main" href="coverage.html">Coverage</a>
+        <a class="extra-main extra-sub" href="calculator.html">2027 Price Calculator</a>
         <a class="extra-main" href="services.html">Consultation</a>
         <a class="extra-main" href="blog.html">Blogs</a>
         <a class="extra-main" href="faq.html">FAQ</a>
@@ -72,23 +85,21 @@
          Submissions are emailed to you through FormSubmit (formsubmit.co).
          The quote type (individual / family / business) comes from the link that opened this page. -->
     <section class="quote-page">
-      <a class="post-back" href="services.html">&larr; Back to Services</a>
+      <a class="post-back" id="quote-back-link" href="services.html">&larr; Back</a>
       <h1 id="quote-title">Get Your Free Quote</h1>
 
       <div class="quote-progress" aria-hidden="true"><div class="quote-progress-bar"></div></div>
-      <p class="quote-step-count">Step <span id="step-now">1</span> of <span id="step-total">7</span></p>
+      <p class="quote-step-count">Step <span id="step-now">1</span> of <span id="step-total">6</span></p>
 
       <form id="quote-form" novalidate>
         <input type="hidden" name="quote_type" id="quote-type" value="Individual">
         <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
           <fieldset class="quote-step" data-step="0">
-            <label for="f-first_name">What’s your first name?</label>
-            <input id="f-first_name" name="first_name" type="text" autocomplete="given-name" required>
-            <p class="quote-error" role="alert"></p>
-          </fieldset>
-          <fieldset class="quote-step" data-step="1" hidden>
-            <label for="f-last_name">What’s your last name?</label>
-            <input id="f-last_name" name="last_name" type="text" autocomplete="family-name" required>
+            <label for="f-first_name">What’s your name?</label>
+            <div class="name-row">
+              <input id="f-first_name" name="first_name" type="text" autocomplete="given-name" placeholder="First name" aria-label="First name" required>
+              <input id="f-last_name" name="last_name" type="text" autocomplete="family-name" placeholder="Last name" aria-label="Last name" required>
+            </div>
             <p class="quote-error" role="alert"></p>
           </fieldset>
           <fieldset class="quote-step" data-step="2" hidden>
@@ -161,7 +172,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=202611041212"></script>
-  <script src="quote.js?v=202611041212"></script>
+  <script src="script.js?v=202611042332"></script>
+  <script src="quote.js?v=202611042332"></script>
 </body>
 </html>

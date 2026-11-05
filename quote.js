@@ -24,6 +24,23 @@
     if ((only && only !== t) || (not && not === t)) { s.remove(); return false; }
     return true;
   });
+  // Coming from the price calculator: fill in what we already know and skip those questions
+  const params = new URLSearchParams(location.search);
+  const fromCalc = params.get('from') === 'calculator';
+  const known = { zip: /^\d{5}$/, age: /^\d{1,3}$/, income: /^\d{1,9}$/ };
+  Object.entries(known).forEach(([name, pattern]) => {
+    const v = params.get(name), input = form.elements[name];
+    if (!v || !input || !pattern.test(v)) return;
+    input.value = name === 'income' ? Number(v).toLocaleString('en-US') : v;
+    const step = input.closest('.quote-step');
+    step.hidden = true;                       // keep the answer, skip the question
+    steps = steps.filter(s => s !== step);
+  });
+
+  // "Back" returns to whichever page sent them here
+  const backLink = document.getElementById('quote-back-link');
+  if (backLink && document.referrer.startsWith(location.origin)) backLink.href = document.referrer;
+
   document.getElementById('step-total').textContent = steps.length;
   document.getElementById('quote-title').textContent = `Get Your Free ${type} Quote`;
   document.title = `Get a Free ${type} Quote | Altius Mind & Wellness Solutions`;
@@ -72,11 +89,11 @@
   // "Next" button and the Enter key both submit the form; we move one step at a time
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    const input = steps[current].querySelector('input');
+    const inputs = [...steps[current].querySelectorAll('input')];
     const error = steps[current].querySelector('.quote-error');
-    const msg = problem(input);
-    error.textContent = msg;
-    if (msg) { input.focus(); return; }
+    const bad = inputs.find(i => problem(i));
+    error.textContent = bad ? problem(bad) : '';
+    if (bad) { bad.focus(); return; }
     if (current < steps.length - 1) { show(current + 1); return; }
 
     // Last step: send everything
@@ -98,6 +115,9 @@
       'ZIP code': data.zip,
       ...(data.employees ? { 'Number of employees': data.employees } : {}),
       ...(data.income ? { 'Estimated annual income': data.income } : {}),
+      ...(params.get('size') ? { 'Household size': params.get('size') } : {}),
+      ...(params.get('ages') ? { 'Ages applying': params.get('ages') } : {}),
+      ...(fromCalc ? { 'Came from': '2027 price calculator' } : {}),
       replyto: data.email,
     };
     try {

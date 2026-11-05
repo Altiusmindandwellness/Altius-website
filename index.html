@@ -3,12 +3,86 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Altius Mind & Wellness Solutions</title>
-  <meta name="description" content="Mental performance coaching and health insurance advice. Support for your Health, Support for your Future.">
+  <title>Altius Mind & Wellness Solutions | Health Insurance Broker &amp; Wellness</title>
+  <meta name="description" content="Independent health insurance broker helping individuals, families and small businesses find the right coverage. Free consultations and quotes from all major carriers.">
+  <link rel="canonical" href="https://altiusmindandwellness.com/">
+  <!-- share preview + icons -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Altius Mind &amp; Wellness Solutions">
+  <meta property="og:title" content="Altius Mind &amp; Wellness Solutions | Health Insurance Broker &amp; Wellness">
+  <meta property="og:description" content="Independent health insurance broker helping individuals, families and small businesses find the right coverage. Free consultations and quotes from all major carriers.">
+  <meta property="og:url" content="https://altiusmindandwellness.com/">
+  <meta property="og:image" content="https://altiusmindandwellness.com/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- /share -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Petrona:wght@300;400;600&family=Pontano+Sans:wght@400;600&family=Cinzel:wght@400&family=Josefin+Sans:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=202611041212">
+  <link rel="stylesheet" href="styles.css?v=202611051054">
+  <!-- business details for Google -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "InsuranceAgency",
+  "name": "Altius Mind and Wellness Solutions",
+  "alternateName": [
+    "Altius Mind & Wellness Solutions",
+    "AM Solutions",
+    "Altius Mind and Wellness",
+    "Altius Wellness Solutions"
+  ],
+  "url": "https://altiusmindandwellness.com/",
+  "logo": "https://altiusmindandwellness.com/images/apple-touch-icon.png",
+  "image": "https://altiusmindandwellness.com/images/og-image.jpg",
+  "description": "Independent health insurance broker helping individuals, families and small businesses find the right coverage, plus mental performance coaching.",
+  "telephone": "+1-954-408-7710",
+  "email": "Shayhealthadvisor@gmail.com",
+  "areaServed": {
+    "@type": "Country",
+    "name": "United States"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "FL",
+    "addressCountry": "US"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "08:00",
+      "closes": "20:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "09:00",
+      "closes": "14:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/altiusmindandwellness/"
+  ],
+  "knowsAbout": [
+    "Health insurance",
+    "ACA Marketplace plans",
+    "Private health insurance",
+    "Small business group health insurance",
+    "Mental performance coaching"
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -23,13 +97,13 @@
         <div class="nav-sub">
           <a class="nav-sub-type" href="coverage.html#individual-plans">Individual Plans</a>
           <a class="nav-sub-type" href="coverage.html#family-plans">Family Plans</a>
-          <a class="nav-sub-type" href="coverage.html#business-plans">Business Plans</a>
+          <a class="nav-sub-type" href="coverage.html#business-plans">Business &amp; Group Plans</a>
           <a class="nav-sub-type" href="coverage.html#private-market">Private Market Plans</a>
           <a class="nav-sub-type" href="coverage.html#entrepreneurs">Entrepreneurs &amp; Independent Contractors</a>
           <a class="nav-sub-type" href="coverage.html#marketplace">Marketplace (ACA) Plans</a>
           <a class="nav-sub-type" href="coverage.html#short-term">Short-Term Health Insurance</a>
           <a class="nav-sub-type" href="coverage.html#dental-vision">Dental &amp; Vision</a>
-          <a class="nav-sub-type" href="coverage.html#employer-group">Employer Group Plans</a>
+          <a class="nav-sub-type nav-sub-calc" href="calculator.html">2027 Price Calculator</a>
         </div>
       </div>
       <a href="services.html">Consultation</a>
@@ -56,6 +130,7 @@
         <a href="about.html">About Us</a>   <!-- home page: About Us lives here instead of the top-left menu -->
         <a class="extra-main active" href="index.html" aria-current="page">Home</a>
         <a class="extra-main" href="coverage.html">Coverage</a>
+        <a class="extra-main extra-sub" href="calculator.html">2027 Price Calculator</a>
         <a class="extra-main" href="services.html">Consultation</a>
         <a class="extra-main" href="blog.html">Blogs</a>
         <a class="extra-main" href="faq.html">FAQ</a>
@@ -70,7 +145,7 @@
 
     <!-- ===== 1. HERO: Scrabble photo, headline bottom-left ===== -->
     <section class="hero">
-      <img class="hero-img" src="images/scrabble.webp" alt="Scrabble tiles spelling the word health">
+      <img class="hero-img" src="images/scrabble.jpg" alt="Scrabble tiles spelling the word health">
       <h1 class="sr-only">Altius Mind &amp; Wellness Solutions</h1>   <!-- hidden title for search engines and screen readers -->
     </section>
 
@@ -148,6 +223,13 @@
       </svg>
     </section>
 
+    <!-- ===== 2b. PRICE CALCULATOR BAND (open enrollment) ===== -->
+    <section class="calc-band">
+      <p class="calc-band-title">Shopping for 2027 coverage?</p>
+      <p>See how much you could save on a Marketplace plan in under a minute.</p>
+      <a class="button" href="calculator.html">Estimate my price</a>
+    </section>
+
     <!-- ===== 3. FROM THE BLOG: post carousel =====
          The posts themselves are listed at the top of script.js — add new posts there. -->
     <section class="blog-section" aria-label="Blogs">
@@ -172,7 +254,7 @@
 
     <!-- ===== 4. PHOTO + TAGLINE ===== -->
     <section class="tagline-section">
-      <img src="images/labyrinth.webp" alt="A person walking a stone labyrinth on a cliff above the ocean">
+      <img src="images/labyrinth.jpg" alt="A person walking a stone labyrinth on a cliff above the ocean">
       <h2>Support for your Health, Support for your Future.</h2>
     </section>
 
@@ -196,7 +278,7 @@
 
     <!-- ===== 6. CALL TO ACTION ===== -->
     <section class="cta dark">
-      <h2>Get started with Altius Mind, today.</h2>
+      <h2>Get started with Altius Mind today.</h2>
       <a class="button button-wide" href="https://calendly.com/shayhealthadvisor/30min" target="_blank" rel="noopener">Book a consultation</a>
     </section>
 
@@ -242,6 +324,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=202611041212"></script>
+  <script src="script.js?v=202611042332"></script>
 </body>
 </html>
