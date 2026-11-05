@@ -912,3 +912,9 @@ body.has-float-cta { padding-bottom: 0; }
 /* Old "Employer Group Plans" links land on the merged Business & Employer Group card */
 .anchor-alias { display: block; height: 0; scroll-margin-top: 200px; }
 @media (max-width: 860px) { .anchor-alias { scroll-margin-top: 140px; } }
+
+/* Home page: carriers strip between the top photo and We Service */
+.carriers-top { padding: 22px var(--gutter) 26px; }
+.carriers-top .section-label { margin-bottom: 10px; }
+.carriers-top .carriers-disclaimer { margin-top: 8px; }
+@media (max-width: 860px) { .carriers-top { padding: 16px 5vw 20px; } }
