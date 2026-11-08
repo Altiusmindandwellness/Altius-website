@@ -37,6 +37,8 @@
       });
       const result = await res.json().catch(() => ({}));
       if (!res.ok || !result.success) throw new Error(result.message || res.status);
+      // Tell Google a lead came in. Only the form name: never the visitor's message or details.
+      if (window.gtag) gtag('event', 'generate_lead', { form_name: 'contact' });
       form.hidden = true;
       document.getElementById('contact-done').hidden = false;
     } catch (err) {

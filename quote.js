@@ -27,9 +27,11 @@
   // Coming from the price calculator: fill in what we already know and skip those questions
   const params = new URLSearchParams(location.search);
   const fromCalc = params.get('from') === 'calculator';
+  let calc = {};
+  if (fromCalc) { try { calc = JSON.parse(sessionStorage.getItem('altius-calc')) || {}; } catch (e) { /* ask the questions instead */ } }
   const known = { zip: /^\d{5}$/, age: /^\d{1,3}$/, income: /^\d{1,9}$/ };
   Object.entries(known).forEach(([name, pattern]) => {
-    const v = params.get(name), input = form.elements[name];
+    const v = calc[name] == null ? '' : String(calc[name]), input = form.elements[name];
     if (!v || !input || !pattern.test(v)) return;
     input.value = name === 'income' ? Number(v).toLocaleString('en-US') : v;
     const step = input.closest('.quote-step');
@@ -115,8 +117,8 @@
       'ZIP code': data.zip,
       ...(data.employees ? { 'Number of employees': data.employees } : {}),
       ...(data.income ? { 'Estimated annual income': data.income } : {}),
-      ...(params.get('size') ? { 'Household size': params.get('size') } : {}),
-      ...(params.get('ages') ? { 'Ages applying': params.get('ages') } : {}),
+      ...(calc.size ? { 'Household size': calc.size } : {}),
+      ...(calc.ages ? { 'Ages applying': calc.ages } : {}),
       ...(fromCalc ? { 'Came from': '2027 price calculator' } : {}),
       replyto: data.email,
     };
@@ -129,6 +131,9 @@
       });
       const result = await res.json().catch(() => ({}));
       if (!res.ok || !result.success) throw new Error(result.message || res.status);
+      try { sessionStorage.removeItem('altius-calc'); } catch (e) { /* nothing to clear */ }
+      // Tell Google a lead came in. Only the form name and quote type: never the visitor's answers.
+      if (window.gtag) gtag('event', 'generate_lead', { form_name: 'quote', quote_type: type });
       form.hidden = true;
       document.querySelector('.quote-progress').hidden = true;
       document.querySelector('.quote-step-count').hidden = true;

@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Petrona:wght@300;400;600&family=Pontano+Sans:wght@400;600&family=Cinzel:wght@400&family=Josefin+Sans:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=202611051247">
+  <link rel="stylesheet" href="styles.css?v=202611081641">
   <!-- business details for Google -->
   <script type="application/ld+json">
 {
@@ -82,6 +82,15 @@
     "Mental performance coaching"
   ]
 }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MFXFW4P702"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-MFXFW4P702');
   </script>
 </head>
 <body>
@@ -273,7 +282,41 @@
     <!-- ===== 4. PHOTO + TAGLINE ===== -->
     <section class="tagline-section">
       <img src="images/labyrinth.jpg" alt="A person walking a stone labyrinth on a cliff above the ocean">
-      <h2>Support for your Health, Support for your Future.</h2>
+      <div class="tagline-contact">
+        <h2>Support for your Health, Support for your Future.</h2>
+        <p class="tagline-sub">Have a question? Send us a message and we’ll get back to you soon.</p>
+
+        <!-- Contact form: same as the Contact page, sent through contact.js -->
+        <div class="contact-form-wrap">
+          <form id="contact-form" class="contact-form" novalidate>
+            <input type="text" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="c-first">First name</label>
+                <input id="c-first" name="first_name" type="text" autocomplete="given-name" required>
+              </div>
+              <div class="form-field">
+                <label for="c-last">Last name</label>
+                <input id="c-last" name="last_name" type="text" autocomplete="family-name" required>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="c-email">Email</label>
+              <input id="c-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="form-field">
+              <label for="c-message">Message</label>
+              <textarea id="c-message" name="message" rows="4" required></textarea>
+            </div>
+            <p class="quote-error" id="contact-error" role="alert"></p>
+            <button type="submit" class="button" id="contact-send">Send</button>
+          </form>
+          <div class="quote-done" id="contact-done" hidden>
+            <h2>Thank you!</h2>
+            <p>Your message has been sent. We’ll get back to you soon.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ===== 5. CLIENT EXPERIENCE: reviews carousel =====
@@ -325,5 +368,6 @@
   </footer>
 
   <script src="script.js?v=202611042332"></script>
+  <script src="contact.js?v=202611061856"></script>
 </body>
 </html>

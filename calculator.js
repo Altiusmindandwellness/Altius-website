@@ -327,12 +327,13 @@ function ageOn2027(dob) {
 
   // The quote form skips questions the visitor already answered here
   function quoteLink(size, income, ages) {
-    const q = new URLSearchParams({ type: size > 1 ? 'family' : 'individual', from: 'calculator', size });
-    if (/^\d{5}$/.test(zipIn.value)) q.set('zip', zipIn.value);
-    if (ages[0] >= 1) q.set('age', ages[0]);
-    if (income) q.set('income', income);
-    if (ages.length) q.set('ages', ages.join(', '));
-    return 'quote.html?' + q;
+    const answers = { size, ages: ages.join(', ') };
+    if (/^\d{5}$/.test(zipIn.value)) answers.zip = zipIn.value;
+    if (ages[0] >= 1) answers.age = ages[0];
+    if (income) answers.income = income;
+    // Kept in this browser tab only, so income and ages never appear in the web address
+    try { sessionStorage.setItem('altius-calc', JSON.stringify(answers)); } catch (e) { /* the form just asks again */ }
+    return `quote.html?type=${size > 1 ? 'family' : 'individual'}&from=calculator`;
   }
 
   addApplicant('self');
