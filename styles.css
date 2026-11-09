@@ -1142,3 +1142,8 @@ button, input, select, textarea { font-family: inherit; }
 /* More room between the chat button and the floating buttons below it (their running borders sit 4px outside) */
 @media (max-width: 1100px) { .chat { bottom: 168px; } }
 @media (max-width: 600px) { .chat { bottom: 88px; } }
+
+/* Text on cream needs slightly deeper shades to stay readable (4.5:1) */
+:root { --accent-on-linen: #a55637; --muted-on-linen: #646e6d; }
+.coverage-card .coverage-link, .quotes-section .calc-teaser a, .faq-item .faq-question:hover { color: var(--accent-on-linen); }
+.coverage-card .coverage-tagline { color: var(--muted-on-linen); }
