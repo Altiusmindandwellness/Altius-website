@@ -1065,3 +1065,15 @@ body.has-float-cta { padding-bottom: 0; }
 /* Header background: warm cream from the logo's original artwork, so the logo and menu text stay crisp */
 :root { --header-bg: #f4f0e8; }
 .site-header { background: var(--header-bg); border-bottom: 1px solid #e6e0d4; }
+
+/* Phones & tablets: the floating Get a quote / Book a consult buttons get the same running black border */
+.float-btn { position: relative; isolation: isolate; }
+.float-btn::before {
+  content: ""; position: absolute; inset: -4px; z-index: -1; border-radius: inherit; pointer-events: none;
+  background: conic-gradient(from var(--ring-angle), #111 0deg 90deg, transparent 130deg 230deg, #111 270deg 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude; padding: 3px;
+  animation: ring-run 2.6s linear infinite;
+}
+.float-book::before { animation-delay: -1.3s; }
+@media (prefers-reduced-motion: reduce) { .float-btn::before { animation: none; background: #111; } }
