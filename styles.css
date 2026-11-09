@@ -871,12 +871,6 @@ body.has-float-cta { padding-bottom: 0; }
   .home-header .site-nav > a, .home-header .site-nav .nav-item > a { font-size: clamp(15px, 1.25vw, 20px); }
 }
 
-/* Floating buttons sit above the "Powered by Netlify" badge in the bottom-right corner (free hosting plan) */
-.float-cta { bottom: 68px; }
-@media (max-width: 860px) {
-  .float-cta { bottom: 60px; }
-  body.has-float-cta { padding-bottom: 124px; }
-}
 
 /* 2027 price calculator links */
 .site-nav .nav-sub .nav-sub-calc { color: var(--accent); border-left-color: var(--accent); margin-top: 6px; }
@@ -926,3 +920,148 @@ body.has-float-cta { padding-bottom: 0; }
 .tagline-contact .contact-form-wrap { padding: clamp(22px, 3vw, 36px); }
 .tagline-contact .form-field textarea { min-height: 110px; }
 @media (max-width: 860px) { .tagline-contact h2 { margin-top: 36px; } }
+
+/* Header buttons: Get a quote + Book a consult, top right beside the logo (laptops and up) */
+.header-cta { display: flex; align-items: center; gap: 10px; margin-right: 6px; }
+.header-quote { position: relative; }
+.header-btn {
+  font: inherit; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
+  padding: 11px 18px; border-radius: 999px; border: 0; cursor: pointer; text-decoration: none; color: var(--white);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.header-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); opacity: 1; }
+.header-btn-quote { background: var(--logo-green); }
+.header-btn-book { background: var(--accent); }
+.header-quote-menu {
+  position: absolute; top: calc(100% + 10px); left: 0; z-index: 30; min-width: 170px;
+  background: var(--white); border-radius: 12px; padding: 12px 16px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.header-quote-menu[hidden] { display: none; }
+.header-quote-menu a { color: var(--text); text-decoration: none; font-size: 15px; }
+.header-quote-menu a:hover { color: var(--accent); }
+/* with the buttons in the header, the floating copies aren't needed on laptops and up */
+@media (min-width: 1101px) { body.has-header-cta .float-cta { display: none; } }
+@media (max-width: 1100px) { .header-cta { display: none; } }
+@media (max-width: 1300px) and (min-width: 1101px) { .header-btn { font-size: 12px; padding: 10px 14px; } .header-cta { gap: 8px; } }
+
+/* Header buttons: a black line runs around each button's border to draw the eye */
+@property --ring-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+.header-btn { position: relative; isolation: isolate; }
+.header-btn::before {
+  content: ""; position: absolute; inset: -4px; z-index: -1; border-radius: inherit; pointer-events: none;
+  background: conic-gradient(from var(--ring-angle), #111 0deg 90deg, transparent 130deg 230deg, #111 270deg 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude; padding: 3px;
+  animation: ring-run 2.6s linear infinite;
+}
+.header-btn-book::before { animation-delay: -1.3s; }        /* the two lines run out of step, so they don't move in sync */
+@keyframes ring-run { to { --ring-angle: 360deg; } }
+@media (prefers-reduced-motion: reduce) {                   /* people who turn off motion see a still black outline */
+  .header-btn::before { animation: none; background: #111; }
+}
+
+/* ===== "Chat with us" box: bottom right, stays put while scrolling ===== */
+.chat { position: fixed; right: 22px; bottom: 22px; z-index: 60; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+.chat-launch {
+  display: flex; align-items: center; gap: 8px; border: 0; cursor: pointer;
+  background: var(--logo-green); color: var(--white); font: inherit; font-size: 15px;
+  padding: 13px 20px 13px 16px; border-radius: 999px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.chat-launch:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24); }
+.chat-panel {
+  width: min(340px, calc(100vw - 32px)); max-height: calc(100vh - 140px); overflow-y: auto;
+  background: var(--white); border-radius: 16px; box-shadow: 0 16px 44px rgba(0, 0, 0, 0.22);
+}
+.chat-panel[hidden] { display: none; }
+.chat-head { display: flex; align-items: center; justify-content: space-between; background: var(--logo-green); color: var(--white); padding: 14px 18px; }
+.chat-title { margin: 0; font-family: var(--heading-font); font-size: 1.2rem; }
+.chat-close { background: none; border: 0; color: var(--white); font-size: 26px; line-height: 1; cursor: pointer; padding: 0 2px; }
+.chat-body { padding: 16px 18px 18px; }
+.chat-bubble-msg { background: #f2efe9; border-radius: 4px 14px 14px 14px; padding: 10px 14px; margin: 0 0 14px; font-size: 15px; line-height: 1.5; }
+.chat-text-btn {
+  display: block; text-align: center; text-decoration: none; background: var(--accent); color: var(--white);
+  padding: 12px 14px; border-radius: 999px; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase;
+}
+.chat-text-btn:hover { opacity: 0.9; }
+.chat-or { display: flex; align-items: center; gap: 10px; margin: 14px 0 10px; font-size: 13px; color: #7a8584; }
+.chat-or::before, .chat-or::after { content: ""; flex: 1; height: 1px; background: #e6e2da; }
+.chat-form input, .chat-form textarea {
+  display: block; width: 100%; box-sizing: border-box; margin-bottom: 8px; padding: 10px 12px;
+  font: inherit; font-size: 16px; color: var(--text); border: 1px solid #cfcac0; border-radius: 8px; background: var(--white);
+}
+.chat-form textarea { resize: vertical; min-height: 74px; }
+.chat-form input:focus, .chat-form textarea:focus { outline: none; border-color: var(--logo-green); box-shadow: 0 0 0 3px rgba(46, 63, 59, 0.12); }
+.chat-error { color: #b3261e; font-size: 13px; margin: 0 0 6px; min-height: 0; }
+.chat-error:empty { display: none; }
+.chat-send { width: 100%; border: 0; cursor: pointer; background: var(--logo-green); color: var(--white); font: inherit; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; padding: 11px; border-radius: 999px; }
+.chat-send:disabled { opacity: 0.6; cursor: wait; }
+.chat-note { font-size: 12px; color: #7a8584; margin: 10px 0 0; line-height: 1.5; }
+.chat-done p { margin: 0 0 6px; }
+.chat-desk { display: none; }
+@media (pointer: fine) { .chat-desk { display: inline; } }
+
+/* Computers: texting isn't possible, so the "Text us" button shows the number instead of opening an app */
+@media (pointer: fine) {
+  .chat-text-btn { pointer-events: none; background: #f2efe9; color: var(--text); text-transform: none; letter-spacing: 0; font-size: 15px; }
+  .chat-touch { display: none; }
+}
+
+/* Tablets & small laptops: the floating quote/consult buttons are also bottom right, so the chat sits above them */
+@media (max-width: 1100px) { .chat { bottom: 150px; } }
+/* Phones: the two floating buttons run along the bottom; chat sits just above them, as a round icon */
+@media (max-width: 600px) {
+  .chat { right: 12px; bottom: 72px; }
+  .chat-launch { padding: 14px; }
+  .chat-launch-label { display: none; }
+  .chat-open { left: 12px; align-items: stretch; }
+  .chat-open .chat-launch { align-self: flex-end; }
+  .chat-panel { width: auto; max-height: calc(100vh - 170px); }
+}
+
+/* Chat button: white, with the same running black border as the header buttons */
+.chat-launch { background: var(--white); color: var(--logo-green); position: relative; isolation: isolate; }
+.chat-launch::before {
+  content: ""; position: absolute; inset: -4px; z-index: -1; border-radius: inherit; pointer-events: none;
+  background: conic-gradient(from var(--ring-angle), #d62828 0deg 90deg, transparent 130deg 230deg, #d62828 270deg 360deg);   /* red, so the chat button stands out */
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude; padding: 3px;
+  animation: ring-run 2.6s linear infinite; animation-delay: -0.65s;
+}
+.chat-launch::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 1px solid #e6e2da; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .chat-launch::before { animation: none; background: #d62828; } }
+
+/* Chat button graphic: three gently bouncing "typing" dots */
+.chat-typing { display: inline-flex; align-items: center; gap: 4px; height: 22px; }
+.chat-typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--logo-green); animation: chat-hop 1.2s infinite; }
+.chat-typing i:nth-child(2) { animation-delay: 0.15s; }
+.chat-typing i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes chat-hop { 0%, 60%, 100% { transform: none; opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
+@media (max-width: 600px) { .chat-launch { width: 54px; height: 54px; justify-content: center; } .chat-typing i { width: 7px; height: 7px; } }
+@media (prefers-reduced-motion: reduce) { .chat-typing i { animation: none; opacity: 1; } }
+
+/* Chat button: coral like "Book a consult", with the black running border and white typing dots */
+.chat-launch { background: var(--accent); color: var(--white); }
+.chat-launch::before { background: conic-gradient(from var(--ring-angle), #111 0deg 90deg, transparent 130deg 230deg, #111 270deg 360deg); }
+.chat-launch::after { border-color: transparent; }
+.chat-typing i { background: var(--white); }
+@media (prefers-reduced-motion: reduce) { .chat-launch::before { background: #111; } }
+
+/* Chat button: a quick shake every few seconds to catch the eye (stops while the chat is open) */
+.chat-launch { animation: chat-shake 2.5s ease-in-out 1s infinite; }   /* shakes about every 2.5 seconds */
+.chat-open .chat-launch, .chat-launch:hover, .chat-launch:focus-visible { animation: none; }
+@keyframes chat-shake {
+  0%, 70%, 100% { transform: none; }
+  74% { transform: rotate(-8deg); }
+  78% { transform: rotate(7deg); }
+  82% { transform: rotate(-6deg); }
+  86% { transform: rotate(5deg); }
+  90% { transform: rotate(-3deg); }
+  94% { transform: rotate(2deg); }
+}
+@media (prefers-reduced-motion: reduce) { .chat-launch { animation: none; } }
+
+/* Header background: warm cream from the logo's original artwork, so the logo and menu text stay crisp */
+:root { --header-bg: #f4f0e8; }
+.site-header { background: var(--header-bg); border-bottom: 1px solid #e6e0d4; }
