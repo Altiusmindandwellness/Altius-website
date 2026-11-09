@@ -7,12 +7,16 @@
 :root {
   --text: #3f4a49;          /* dark slate — body text */
   --slate: #495a58;         /* dark section background */
-  --accent: #d4967d;        /* coral — buttons, links, wave */
+  --accent: #b45e3c;        /* coral deep — buttons, links, labels (readable: 4.56:1 with white) */
+  --accent-soft: #d4967d;   /* brand coral — wave lines, icons, stars, decorative shapes */
+  --linen: #f4f0e8;         /* cream — header, cards, form boxes */
+  --line: #e6e2da;          /* borders and dividers */
+  --muted: #6b7675;         /* captions and fine print */
   --logo-green: #2e3f3b;    /* dark green from the logo symbol */
   --white: #ffffff;
 
   --heading-font: "Petrona", Georgia, serif;  /* free stand-in for Squarespace's Adonis */
-  --body-font: "Pontano Sans", "Helvetica Neue", Arial, sans-serif;
+  --body-font: "Petrona", Georgia, serif;    /* one typeface for the whole site (the logo keeps its own lettering) */
 
   --gutter: 4vw;                              /* side margins, same as Squarespace */
   --heading-size: clamp(2.5rem, 4.8vw, 4.2rem);
@@ -257,14 +261,14 @@ a { color: var(--accent); }
 .review-stars { align-self: center; font-size: 0.85rem; line-height: 1; margin-bottom: 8px; white-space: nowrap; }
 /* Each star is a pale star with a coral copy on top, filled to the rating (so 4.8 shows 80% of the last star) */
 .star { position: relative; display: inline-block; color: #ecd9d0; margin: 0 0.07em; }
-.star-fill { position: absolute; left: 0; top: 0; overflow: hidden; color: var(--accent); }
+.star-fill { position: absolute; left: 0; top: 0; overflow: hidden; color: var(--accent-soft); }
 .review-text {
   font-family: var(--heading-font); font-weight: 300;
   font-size: 0.95rem; line-height: 1.55;
   margin: 0 0 10px; flex: 1;
 }
 .review-name { font-size: 13px; margin: 0; }
-.review-source { font-size: 11px; color: #7a8584; margin: 0; }
+.review-source { font-size: 11px; color: var(--muted); margin: 0; }
 
 /* ---------- 6. Call to action ---------- */
 .cta { padding: 96px var(--gutter) 96px; }
@@ -384,12 +388,12 @@ a { color: var(--accent); }
 .post-body p { margin: 0 0 18px; }
 .post-body ul, .post-body ol { margin: 0 0 22px; padding-left: 1.3em; }
 .post-body li { margin-bottom: 8px; }
-.post-body li::marker { color: var(--accent); }
+.post-body li::marker { color: var(--accent-soft); }
 .post-body strong { font-weight: 600; }
 .post-body table { width: 100%; border-collapse: collapse; margin: 8px 0 24px; font-size: 16px; }
-.post-body th, .post-body td { text-align: left; padding: 12px 14px; border-bottom: 1px solid #e3e0da; }
+.post-body th, .post-body td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); }
 .post-body thead th { background: var(--slate); color: var(--white); font-weight: 400; }
-.post-body tbody tr:nth-child(even) { background: #f7f5f0; }
+.post-body tbody tr:nth-child(even) { background: var(--linen); }
 .post-cta {
   background: var(--slate); color: var(--white);
   text-align: center; padding: 40px 28px; margin: 48px 0 32px;
@@ -440,7 +444,7 @@ a { color: var(--accent); }
 /* ---------- Questions band ---------- */
 .questions-band { padding: 140px var(--gutter); }
 .questions-band h2 { font-size: calc(var(--heading-size) - 8px); }
-.questions-band a { color: #dcd6c8; text-underline-offset: 8px; text-decoration-thickness: 1px; }
+.questions-band a { color: var(--line); text-underline-offset: 8px; text-decoration-thickness: 1px; }
 .questions-band a:hover { color: var(--white); }
 
 @media (max-width: 860px) {
@@ -453,8 +457,8 @@ a { color: var(--accent); }
 
 /* ---------- Services: insurance carrier logo carousel ---------- */
 .carriers-section { padding: 0 var(--gutter) 100px; }
-.carriers-section .section-label { color: var(--logo-green); }
-.carriers-disclaimer { text-align: center; font-size: 12px; line-height: 1.5; color: #7a8584; margin: 18px auto 0; max-width: 560px; }
+.carriers-section .section-label { color: var(--accent); }   /* same eyebrow style as every other section */
+.carriers-disclaimer { text-align: center; font-size: 12px; line-height: 1.5; color: var(--muted); margin: 18px auto 0; max-width: 560px; }
 .carousel-logos { --per-view: 5; --gap: 40px; }
 .carrier { height: 96px; display: grid; place-items: center; padding: 0 8px; }
 .carrier img { max-height: 44px; max-width: 100%; width: auto; object-fit: contain; }
@@ -464,7 +468,7 @@ a { color: var(--accent); }
 @media (max-width: 600px)  { .carousel-logos { --per-view: 2; --gap: 20px; } .carrier img { max-height: 36px; } .carrier-name { font-size: 17px; } }
 
 /* ---------- Services: "Get a Free Quote" cards ---------- */
-.quotes-section { background: #f7f5f0; padding: 90px var(--gutter) 100px; text-align: center; }
+.quotes-section { background: var(--linen); padding: 90px var(--gutter) 100px; text-align: center; }
 .quotes-section h2 { font-size: calc(var(--heading-size) - 6px); margin-bottom: 10px; }
 .quotes-intro { margin: 0 0 48px; }
 .quote-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1100px; margin: 0 auto; }
@@ -473,7 +477,7 @@ a { color: var(--accent); }
   padding: 36px 28px 32px; display: flex; flex-direction: column; align-items: center;
   border: 1px solid transparent; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
-.quote-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07); }
+.quote-card:hover { border-color: var(--accent-soft); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07); }
 .quote-icon { width: 130px; height: 130px; color: var(--logo-green); margin-bottom: 8px; }
 .quote-card h3 { font-size: 1.6rem; margin-bottom: 10px; }
 .quote-card p { margin: 0 0 18px; font-size: 16px; line-height: 1.6; flex: 1; }
@@ -486,9 +490,9 @@ a { color: var(--accent); }
 /* ---------- Quote form page ---------- */
 .quote-page { max-width: 600px; margin: 0 auto; padding: 48px var(--gutter) 100px; box-sizing: content-box; min-height: 52vh; }
 .quote-page h1 { font-size: calc(var(--heading-size) - 10px); margin: 22px 0 28px; }
-.quote-progress { height: 4px; background: #ebe7df; margin-bottom: 10px; }
-.quote-progress-bar { height: 100%; width: 0; background: var(--accent); transition: width 0.3s; }
-.quote-step-count { font-size: 14px; color: #7a8584; margin: 0 0 36px; }
+.quote-progress { height: 4px; background: var(--line); margin-bottom: 10px; }
+.quote-progress-bar { height: 100%; width: 0; background: var(--accent-soft); transition: width 0.3s; }
+.quote-step-count { font-size: 14px; color: var(--muted); margin: 0 0 36px; }
 .quote-step { border: 0; padding: 0; margin: 0; }
 .quote-step label { display: block; font-family: var(--heading-font); font-size: 1.7rem; line-height: 1.3; margin-bottom: 18px; }
 .quote-step input {
@@ -501,7 +505,7 @@ a { color: var(--accent); }
 .money-input input { padding-left: 32px; }
 .quote-error { color: #b4462e; font-size: 15px; min-height: 1.6em; margin: 8px 0 0; }
 .quote-error a { color: inherit; }
-.quote-consent { font-size: 13px; line-height: 1.6; color: #7a8584; margin: 6px 0 0; }
+.quote-consent { font-size: 13px; line-height: 1.6; color: var(--muted); margin: 6px 0 0; }
 .quote-buttons { display: flex; gap: 14px; margin-top: 26px; }
 .quote-buttons .button { padding: 15px 32px; font-size: 14px; cursor: pointer; font-family: inherit; border: 1px solid var(--accent); }
 .quote-buttons .button-outline { border-color: var(--text); }
@@ -530,7 +534,7 @@ a { color: var(--accent); }
 .contact-links { display: inline-flex; flex-direction: column; align-items: flex-start; text-align: left; }
 .contact-info .contact-line { margin: 0 0 16px; }
 .contact-form-wrap {                                         /* the form sits in its own box */
-  background: #f7f5f0; border: 1px solid #e6e2da;
+  background: var(--linen); border: 1px solid #e6e2da;
   padding: clamp(28px, 4vw, 48px);
 }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -557,10 +561,10 @@ a { color: var(--accent); }
 
 /* accordion: each question sits in its own box; click it to slide the answer open */
 .faq-item {
-  background: #f7f5f0; border: 1px solid #e6e2da;
+  background: var(--linen); border: 1px solid #e6e2da;
   margin-bottom: 14px; transition: border-color 0.2s;
 }
-.faq-item:hover, .faq-item.open { border-color: var(--accent); }
+.faq-item:hover, .faq-item.open { border-color: var(--accent-soft); }
 .faq-item h3 { margin: 0; }
 .faq-question {
   width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px;
@@ -569,7 +573,7 @@ a { color: var(--accent); }
 }
 .faq-icon { position: relative; flex: none; width: 16px; height: 16px; }   /* + that turns into − when open */
 .faq-icon::before, .faq-icon::after {
-  content: ""; position: absolute; left: 0; top: 7px; width: 16px; height: 2px; background: var(--accent);
+  content: ""; position: absolute; left: 0; top: 7px; width: 16px; height: 2px; background: var(--accent-soft);
   transition: transform 0.3s ease;
 }
 .faq-icon::after { transform: rotate(90deg); }
@@ -642,8 +646,8 @@ a { color: var(--accent); }
 .about-promise > p { max-width: 720px; margin: 0 auto 18px; }
 .about-promise-lead { font-family: var(--heading-font); font-size: 1.45rem; line-height: 1.5; }
 .promise-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px; }
-.promise-point { background: #f7f5f0; border: 1px solid #e6e2da; padding: 30px 22px; }
-.promise-point svg { width: 46px; height: 46px; color: var(--accent); margin-bottom: 10px; }
+.promise-point { background: var(--linen); border: 1px solid #e6e2da; padding: 30px 22px; }
+.promise-point svg { width: 46px; height: 46px; color: var(--accent-soft); margin-bottom: 10px; }
 .promise-point h3 { font-size: 1.35rem; font-weight: 600; margin-bottom: 8px; }
 .promise-point p { margin: 0; font-size: 16px; line-height: 1.6; }
 @media (max-width: 860px) {
@@ -669,7 +673,7 @@ a { color: var(--accent); }
 .coverage-intro { max-width: 640px; margin: 0 auto 50px; }
 .coverage-card {
   display: grid; grid-template-columns: 64px 1fr; gap: 24px; align-items: start;
-  background: #f7f5f0; border: 1px solid #e6e2da; padding: 30px 32px; margin-bottom: 16px;
+  background: var(--linen); border: 1px solid #e6e2da; padding: 30px 32px; margin-bottom: 16px;
   scroll-margin-top: 200px;               /* menu links land just below the pinned header */
 }
 .coverage-icon { width: 56px; height: 56px; color: var(--logo-green); }
@@ -678,7 +682,7 @@ a { color: var(--accent); }
 .coverage-card p { margin: 0 0 14px; }
 .coverage-link { font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
 .coverage-link:hover { text-decoration: underline; }
-.coverage-note { font-size: 13px; color: #7a8584; text-align: center; max-width: 680px; margin: 34px auto 0; line-height: 1.6; }
+.coverage-note { font-size: 13px; color: var(--muted); text-align: center; max-width: 680px; margin: 34px auto 0; line-height: 1.6; }
 @media (max-width: 860px) {
   .coverage-page { padding: 56px 6vw 64px; box-sizing: border-box; }
   .coverage-card { grid-template-columns: 1fr; gap: 10px; padding: 24px 20px; }
@@ -763,7 +767,7 @@ a { color: var(--accent); }
 }
 /* Legal pages (Privacy, Terms, Refer & Earn) */
 .legal-page h1 { margin-top: 0; }
-.legal-updated { font-size: 14px; color: #7a8584; }
+.legal-updated { font-size: 14px; color: var(--muted); }
 .footer-links a.active { text-decoration: underline; text-underline-offset: 3px; }
 
 /* Footer license: bigger, with the verify link on its own line */
@@ -792,7 +796,7 @@ a { color: var(--accent); }
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
   display: flex; flex-direction: column; gap: 8px; min-width: 190px;
 }
-.float-quote-menu p { margin: 0 0 2px; font-size: 13px; color: #7a8584; }
+.float-quote-menu p { margin: 0 0 2px; font-size: 13px; color: var(--muted); }
 .float-quote-menu a { color: var(--text); text-decoration: none; font-size: 16px; }
 .float-quote-menu a:hover { color: var(--accent); }
 body.has-float-cta { padding-bottom: 0; }
@@ -873,7 +877,7 @@ body.has-float-cta { padding-bottom: 0; }
 
 
 /* 2027 price calculator links */
-.site-nav .nav-sub .nav-sub-calc { color: var(--accent); border-left-color: var(--accent); margin-top: 6px; }
+.site-nav .nav-sub .nav-sub-calc { color: var(--accent); border-left-color: var(--accent-soft); margin-top: 6px; }
 .extra-menu .extra-sub { font-size: 0.85em; color: var(--accent); }
 .coverage-link + .coverage-link { margin-left: 22px; }
 .calc-teaser { text-align: center; margin: 40px auto 0; font-size: 16px; }
@@ -979,17 +983,17 @@ body.has-float-cta { padding-bottom: 0; }
 .chat-title { margin: 0; font-family: var(--heading-font); font-size: 1.2rem; }
 .chat-close { background: none; border: 0; color: var(--white); font-size: 26px; line-height: 1; cursor: pointer; padding: 0 2px; }
 .chat-body { padding: 16px 18px 18px; }
-.chat-bubble-msg { background: #f2efe9; border-radius: 4px 14px 14px 14px; padding: 10px 14px; margin: 0 0 14px; font-size: 15px; line-height: 1.5; }
+.chat-bubble-msg { background: var(--linen); border-radius: 4px 14px 14px 14px; padding: 10px 14px; margin: 0 0 14px; font-size: 15px; line-height: 1.5; }
 .chat-text-btn {
   display: block; text-align: center; text-decoration: none; background: var(--accent); color: var(--white);
   padding: 12px 14px; border-radius: 999px; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase;
 }
 .chat-text-btn:hover { opacity: 0.9; }
-.chat-or { display: flex; align-items: center; gap: 10px; margin: 14px 0 10px; font-size: 13px; color: #7a8584; }
+.chat-or { display: flex; align-items: center; gap: 10px; margin: 14px 0 10px; font-size: 13px; color: var(--muted); }
 .chat-or::before, .chat-or::after { content: ""; flex: 1; height: 1px; background: #e6e2da; }
 .chat-form input, .chat-form textarea {
   display: block; width: 100%; box-sizing: border-box; margin-bottom: 8px; padding: 10px 12px;
-  font: inherit; font-size: 16px; color: var(--text); border: 1px solid #cfcac0; border-radius: 8px; background: var(--white);
+  font: inherit; font-size: 16px; color: var(--text); border: 1px solid #c9c4ba; border-radius: 8px; background: var(--white);
 }
 .chat-form textarea { resize: vertical; min-height: 74px; }
 .chat-form input:focus, .chat-form textarea:focus { outline: none; border-color: var(--logo-green); box-shadow: 0 0 0 3px rgba(46, 63, 59, 0.12); }
@@ -997,14 +1001,14 @@ body.has-float-cta { padding-bottom: 0; }
 .chat-error:empty { display: none; }
 .chat-send { width: 100%; border: 0; cursor: pointer; background: var(--logo-green); color: var(--white); font: inherit; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; padding: 11px; border-radius: 999px; }
 .chat-send:disabled { opacity: 0.6; cursor: wait; }
-.chat-note { font-size: 12px; color: #7a8584; margin: 10px 0 0; line-height: 1.5; }
+.chat-note { font-size: 12px; color: var(--muted); margin: 10px 0 0; line-height: 1.5; }
 .chat-done p { margin: 0 0 6px; }
 .chat-desk { display: none; }
 @media (pointer: fine) { .chat-desk { display: inline; } }
 
 /* Computers: texting isn't possible, so the "Text us" button shows the number instead of opening an app */
 @media (pointer: fine) {
-  .chat-text-btn { pointer-events: none; background: #f2efe9; color: var(--text); text-transform: none; letter-spacing: 0; font-size: 15px; }
+  .chat-text-btn { pointer-events: none; background: var(--linen); color: var(--text); text-transform: none; letter-spacing: 0; font-size: 15px; }
   .chat-touch { display: none; }
 }
 
@@ -1064,7 +1068,7 @@ body.has-float-cta { padding-bottom: 0; }
 
 /* Header background: warm cream from the logo's original artwork, so the logo and menu text stay crisp */
 :root { --header-bg: #f4f0e8; }
-.site-header { background: var(--header-bg); border-bottom: 1px solid #e6e0d4; }
+.site-header { background: var(--header-bg); border-bottom: 1px solid var(--line); }
 
 /* Phones & tablets: the floating Get a quote / Book a consult buttons get the same running black border */
 .float-btn { position: relative; isolation: isolate; }
@@ -1077,3 +1081,41 @@ body.has-float-cta { padding-bottom: 0; }
 }
 .float-book::before { animation-delay: -1.3s; }
 @media (prefers-reduced-motion: reduce) { .float-btn::before { animation: none; background: #111; } }
+
+/* ===== Rounded edges: every button is a pill, every bordered box and field has soft corners ===== */
+.button, .button-outline, .button-light, .quote-buttons .button, .contact-form .button,
+.faq-cta .button-light, .calc-addbtn { border-radius: 999px; }
+.quote-card, .coverage-card, .faq-item, .contact-form-wrap, .promise-point, .calc-wrap { border-radius: 14px; }
+.calc-wrap { overflow: hidden; }
+.quote-step input, .money-input input, .form-field input, .form-field textarea, .calc-field, .calc-select, .calc-stepper { border-radius: 10px; }
+.calc-alert, .calc-panel, .calc-applicant { border-radius: 12px; }
+.chat-text-btn, .chat-send { border-radius: 999px; }
+
+/* Buttons and fields use the site font too (browsers default them to Arial) */
+button, input, select, textarea { font-family: inherit; }
+
+/* ===== Closing call-to-action band: one design on every page ===== */
+.cta-band { background: var(--slate); color: var(--white); text-align: center; padding: 96px var(--gutter); display: grid; gap: 26px; justify-items: center; }
+.cta-band h2 { font-size: calc(var(--heading-size) - 10px); max-width: 780px; margin: 0; color: var(--white); }
+.cta-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.cta-actions .button { padding: 15px 30px; font-size: 14px; }
+.button-on-dark { background: var(--white); color: var(--logo-green); }
+.button-ghost-light { background: transparent; color: var(--white); box-shadow: inset 0 0 0 1.5px var(--white); }
+.button-ghost-light:hover { background: rgba(255, 255, 255, 0.1); opacity: 1; }
+.cta-alt { margin: 0; font-size: 15px; color: var(--line); }
+.cta-alt a { color: var(--white); text-underline-offset: 4px; }
+@media (max-width: 860px) { .cta-band { padding: 64px 6vw; } }
+
+/* ===== Inner page openings: eyebrow, heading, one-line intro ===== */
+.page-intro { text-align: center; max-width: 560px; margin: -20px auto 40px; }
+.blog-list .section-label, .faq-page .section-label, .other-services-page .section-label, .calc-page .section-label { margin-bottom: 10px; }
+
+/* ===== Footer: linen background with the logo mark and tagline ===== */
+.site-footer { background: var(--linen); border-top: 1px solid var(--line); }
+.footer-brand { justify-self: end; text-align: right; display: grid; justify-items: end; gap: 12px; }
+.footer-brand img { width: 64px; height: auto; }
+.footer-tagline { font-family: var(--heading-font); font-size: 1.25rem; line-height: 1.35; color: var(--logo-green); margin: 0; }
+@media (max-width: 860px) { .footer-brand { justify-self: start; text-align: left; justify-items: start; } }
+
+/* Chat button label in capitals, matching the other buttons */
+.chat-launch-label { text-transform: uppercase; letter-spacing: 0.06em; font-size: 14px; }

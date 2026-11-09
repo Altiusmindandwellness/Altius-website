@@ -19,8 +19,8 @@
   <!-- /share -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Petrona:wght@300;400;600&family=Pontano+Sans:wght@400;600&family=Cinzel:wght@400&family=Josefin+Sans:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=202611091420">
+  <link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,300;0,400;0,600;1,400&family=Cinzel:wght@400&family=Josefin+Sans:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=202611091451">
   <style>
     /* ----- 2027 Marketplace price calculator: three live panels ----- */
     .calc-page { max-width: 1180px; margin: 0 auto; padding: 48px var(--gutter) 90px; box-sizing: content-box; }
@@ -35,26 +35,26 @@
     .calc-group { margin-bottom: 20px; }
     .calc-field, .calc-select {
       display: block; width: 100%; box-sizing: border-box; padding: 11px 13px; font: inherit; font-size: 16px; color: var(--text);
-      background: #f5f3ee; border: 1px solid #ddd8ce; border-radius: 6px;
+      background: var(--linen); border: 1px solid var(--line); border-radius: 10px;
     }
     .calc-field:focus, .calc-select:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: var(--accent); background: var(--white); }
     .calc-flash { animation: calcflash 1.2s ease; }
-    @keyframes calcflash { 0% { background: #f6dccf; border-color: var(--accent); } 100% { background: #f5f3ee; } }
+    @keyframes calcflash { 0% { background: #f6dccf; border-color: var(--accent-soft); } 100% { background: var(--linen); } }
     .calc-hint { font-size: 13px; color: #6b7675; margin: 6px 0 0; line-height: 1.5; }
-    .calc-stepper { display: flex; border: 1px solid #ddd8ce; border-radius: 6px; overflow: hidden; background: #f5f3ee; }
+    .calc-stepper { display: flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--linen); }
     .calc-stepper:focus-within { outline: 2px solid var(--accent); outline-offset: -1px; }
     .calc-stepper .calc-field { border: 0; border-radius: 0; background: transparent; outline: none; }
     .calc-stepper .calc-money { position: relative; flex: 1; }
     .calc-stepper .calc-money::before { content: "$"; position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #6b7675; }
     .calc-stepper .calc-money .calc-field { padding-left: 26px; }
-    .calc-step { flex: none; width: 44px; border: 0; border-left: 1px solid #ddd8ce; background: #ece9e2; color: var(--text); font-size: 20px; line-height: 1; cursor: pointer; }
+    .calc-step { flex: none; width: 44px; border: 0; border-left: 1px solid var(--line); background: #ece9e2; color: var(--text); font-size: 20px; line-height: 1; cursor: pointer; }
     .calc-step:hover { background: var(--accent); color: var(--white); }
     .calc-stepper .calc-field::-webkit-outer-spin-button, .calc-stepper .calc-field::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
     .calc-stepper input[type=number] { -moz-appearance: textfield; }
     details.calc-more summary { cursor: pointer; font-size: 14px; color: var(--accent); }
     details.calc-more[open] summary { margin-bottom: 10px; }
 
-    .calc-applicant { border: 1px solid #ddd8ce; border-radius: 8px; padding: 14px 16px 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(46,63,59,0.06); }
+    .calc-applicant { border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(46,63,59,0.06); }
     .calc-applicant-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .calc-role { display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 15px; color: var(--logo-green); }
     .calc-x { background: none; border: 0; padding: 4px; cursor: pointer; color: #8a9493; display: flex; }
@@ -68,22 +68,22 @@
     .calc-check input { accent-color: var(--logo-green); width: 16px; height: 16px; margin: 0; }
     .calc-check[hidden] { display: none; }
     .calc-addrow { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
-    .calc-addbtn { padding: 10px 8px; font: inherit; font-size: 14px; color: var(--logo-green); background: var(--white); border: 1px solid #cfcac0; border-radius: 6px; cursor: pointer; }
+    .calc-addbtn { padding: 10px 8px; font: inherit; font-size: 14px; color: var(--logo-green); background: var(--white); border: 1px solid #c9c4ba; border-radius: 999px; cursor: pointer; }
     .calc-addbtn:hover { border-color: var(--accent); color: var(--accent); }
     .calc-addrow .calc-addbtn[hidden] + .calc-addbtn { grid-column: 1 / -1; }
 
-    .calc-alert { border-radius: 6px; padding: 14px 16px; font-size: 15px; line-height: 1.5; margin-bottom: 14px; border: 1px solid; }
+    .calc-alert { border-radius: 12px; padding: 14px 16px; font-size: 15px; line-height: 1.5; margin-bottom: 14px; border: 1px solid; }
     .calc-alert-ok { background: #edf5f0; border-color: #a9cbb6; color: #24553b; }
     .calc-alert-warn { background: #fbefea; border-color: #e5b3a1; color: #8a3a22; }
-    .calc-alert-info { background: #f5f3ee; border-color: #e6e2da; color: #5b6665; }
-    .calc-panel { background: #f5f3ee; border-radius: 6px; padding: 16px 18px; }
+    .calc-alert-info { background: var(--linen); border-color: #e6e2da; color: #5b6665; }
+    .calc-panel { background: var(--linen); border-radius: 12px; padding: 16px 18px; }
     .calc-panel p { margin: 0 0 10px; font-size: 15px; }
     .calc-nums { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 8px; }
     .calc-label { font-size: 12px !important; letter-spacing: 0.08em; text-transform: uppercase; color: #6b7675; margin: 0 0 4px !important; }
     .calc-big { font-family: var(--heading-font); font-size: 2rem !important; line-height: 1.1; color: var(--logo-green); margin: 0 0 8px !important; }
     .calc-big span { font-family: var(--body-font); font-size: 0.95rem; color: #6b7675; margin-left: 3px; }
     .calc-small { font-size: 14px !important; }
-    .calc-badge { font-size: 14px !important; background: var(--white); border-left: 3px solid var(--accent); padding: 8px 10px; }
+    .calc-badge { font-size: 14px !important; background: var(--white); border-left: 3px solid var(--accent-soft); padding: 8px 10px; }
     .calc-elig-title { font-weight: 600; color: #8a3a22; margin-top: 4px !important; }
     .calc-people { list-style: none; padding: 0; margin: 0 0 12px; }
     .calc-people li { display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
@@ -91,7 +91,7 @@
     .calc-fpl { font-size: 13px !important; color: #6b7675; margin: 6px 0 0 !important; }
     .calc-fine { font-size: 12.5px; color: #6b7675; line-height: 1.55; margin: 14px 0; }
     .calc-cta { display: block; text-align: center; padding: 14px 20px; font-size: 14px; }
-    .calc-note { font-size: 11px; line-height: 1.5; color: #7a8584; text-align: center; max-width: 640px; margin: 24px auto 0; }
+    .calc-note { font-size: 11px; line-height: 1.5; color: var(--muted); text-align: center; max-width: 640px; margin: 24px auto 0; }
 
     @media (max-width: 1000px) {
       .calc-wrap { grid-template-columns: 1fr 1fr; }
@@ -176,6 +176,7 @@
     <!-- ===== 2027 MARKETPLACE PRICE CALCULATOR (DRAFT, not linked from the menu yet) =====
          The numbers it uses (IRS percentages, poverty guidelines, state prices) are at the top of calculator.js. -->
     <section class="calc-page">
+      <p class="section-label">2027 open enrollment</p>
       <h1>2027 Marketplace Price Calculator</h1>
       <p class="calc-intro">See how much you could save on a 2027 Marketplace (Obamacare) health plan. Your estimate updates as you type.</p>
 
@@ -259,6 +260,10 @@
           <li><a href="privacy.html">Privacy Policy</a></li>
           <li><a href="terms.html">Terms &amp; Conditions</a></li>
         </ul>
+      </div>
+      <div class="footer-brand">   <!-- right column: logo mark + tagline -->
+        <img src="images/logo-circle.png" alt="" width="64" height="65">
+        <p class="footer-tagline">Support for your Health,<br>Support for your Future.</p>
       </div>
     </div>
   </footer>
