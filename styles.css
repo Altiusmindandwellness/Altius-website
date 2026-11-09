@@ -1147,3 +1147,9 @@ button, input, select, textarea { font-family: inherit; }
 :root { --accent-on-linen: #a55637; --muted-on-linen: #646e6d; }
 .coverage-card .coverage-link, .quotes-section .calc-teaser a, .faq-item .faq-question:hover { color: var(--accent-on-linen); }
 .coverage-card .coverage-tagline { color: var(--muted-on-linen); }
+
+/* Footer: logo centered above the tagline */
+.footer-brand { justify-items: center; text-align: center; }
+@media (max-width: 860px) { .footer-brand { justify-items: center; text-align: center; } }
+.footer-tagline { text-align: center; }
+@media (max-width: 860px) { .footer-brand { justify-self: center; margin-top: 8px; } }
