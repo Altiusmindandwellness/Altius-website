@@ -1153,3 +1153,6 @@ button, input, select, textarea { font-family: inherit; }
 @media (max-width: 860px) { .footer-brand { justify-items: center; text-align: center; } }
 .footer-tagline { text-align: center; }
 @media (max-width: 860px) { .footer-brand { justify-self: center; margin-top: 8px; } }
+
+/* While the tawk.to live chat window is open, hide our launch button so they don't overlap */
+.chat.chat-live .chat-launch { visibility: hidden; }

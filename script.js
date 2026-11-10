@@ -315,6 +315,7 @@ document.querySelectorAll('.faq-item').forEach((item, n) => {
         <button type="button" class="chat-close" aria-label="Close chat">&times;</button>
       </div>
       <div class="chat-body">
+        <div class="chat-fallback">
         <p class="chat-bubble-msg">Hi there! 👋 How can we help? Text us, or leave a quick message and we’ll get right back to you.</p>
         <a class="chat-text-btn" href="${smsLink}"><span class="chat-touch">Text us at</span><span class="chat-desk">Text or call</span> ${PHONE_SHOWN}</a>
         <p class="chat-or"><span>or send a message</span></p>
@@ -334,6 +335,17 @@ document.querySelectorAll('.faq-item').forEach((item, n) => {
           <p><strong>Thanks! Your message is on its way.</strong></p>
           <p>We’ll reply by text or email as soon as we can.</p>
         </div>
+        </div>
+        <form class="chat-form chat-start" hidden novalidate>
+          <p class="chat-bubble-msg">Hi there! 👋 What’s your name? We’ll connect you with our team right away.</p>
+          <label class="sr-only" for="chat-start-name">Your name</label>
+          <input id="chat-start-name" name="name" type="text" autocomplete="name" placeholder="Your name">
+          <label class="sr-only" for="chat-start-reach">Phone or email (optional)</label>
+          <input id="chat-start-reach" name="reach" type="text" autocomplete="email" placeholder="Phone or email (optional)">
+          <p class="chat-error" role="alert"></p>
+          <button type="submit" class="chat-send">Start chat</button>
+          <p class="chat-note">Prefer to text? <a href="${smsLink}">${PHONE_SHOWN}</a>. Please don’t include health or financial details.</p>
+        </form>
       </div>
     </div>
     <button type="button" class="chat-launch" aria-expanded="false" aria-controls="chat-panel">
@@ -343,17 +355,58 @@ document.querySelectorAll('.faq-item').forEach((item, n) => {
   document.body.append(box);
 
   const panel = box.querySelector('.chat-panel'), launch = box.querySelector('.chat-launch');
+  let tawkReady = false;
   const setOpen = open => {
     panel.hidden = !open;
     launch.setAttribute('aria-expanded', open);
     box.classList.toggle('chat-open', open);
-    if (open) (box.querySelector('.chat-done').hidden ? box.querySelector('#chat-name') : launch).focus();
+    if (open) (tawkReady ? box.querySelector('#chat-start-name') : box.querySelector('.chat-done').hidden ? box.querySelector('#chat-name') : launch).focus();
   };
-  launch.addEventListener('click', () => setOpen(panel.hidden));
+  // Live chat through tawk.to: our button opens their chat window (replies come from the tawk.to phone app).
+  // If tawk.to can't load (ad blocker, outage), the button opens the text/message box above instead.
+  window.Tawk_API = window.Tawk_API || {}; window.Tawk_LoadStart = new Date();
+  const fallback = box.querySelector('.chat-fallback'), start = box.querySelector('.chat-start');
+  const closeLive = () => { Tawk_API.hideWidget(); box.classList.remove('chat-live'); };
+  const openLive = () => { setOpen(false); box.classList.add('chat-live'); Tawk_API.showWidget(); Tawk_API.maximize(); };
+  Tawk_API.onLoad = () => {
+    tawkReady = true; fallback.hidden = true; start.hidden = false;
+    // A chat left open on the last page reopens by itself: keep it open, with our button out of the way.
+    if (Tawk_API.isChatMaximized()) { setOpen(false); box.classList.add('chat-live'); } else Tawk_API.hideWidget();
+  };
+  Tawk_API.onChatMinimized = closeLive;
+  // Tell Google a lead came in when a visitor starts a live chat. Never the visitor's details.
+  Tawk_API.onChatStarted = () => { if (window.gtag) gtag('event', 'generate_lead', { form_name: 'live_chat' }); };
+  const tawk = document.createElement('script');
+  tawk.async = true; tawk.charset = 'UTF-8'; tawk.setAttribute('crossorigin', '*');
+  tawk.src = 'https://embed.tawk.to/6af267a0fbf32a3c40a330f3/1k71e9iuu';
+  document.head.append(tawk);
+
+  // Before the live chat opens, ask for a name so it shows in the tawk.to dashboard (asked once per visit).
+  let named = false;
+  try { named = !!sessionStorage.getItem('altius-chat-name'); } catch (e) {}
+  launch.addEventListener('click', () => { if (tawkReady && named) openLive(); else setOpen(panel.hidden); });
+  start.addEventListener('submit', e => {
+    e.preventDefault();
+    const err = start.querySelector('.chat-error');
+    const name = start.elements.name.value.trim(), reach = start.elements.reach.value.trim();
+    const digits = reach.replace(/\D/g, '');
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(reach);
+    const isPhone = digits.length === 10 || (digits.length === 11 && digits[0] === '1');
+    err.textContent = !name ? 'Please enter your name.' : reach && !isEmail && !isPhone ? 'Please check your phone or email, or leave it blank.' : '';
+    if (err.textContent) return;
+    // Name first on its own, so a contact detail tawk.to rejects can't stop the name from showing.
+    Tawk_API.setAttributes({ name }, () => {
+      if (isEmail) Tawk_API.setAttributes({ email: reach }, () => {});
+      else if (isPhone) Tawk_API.setAttributes({ phone: reach }, () => {});
+    });
+    named = true;
+    try { sessionStorage.setItem('altius-chat-name', '1'); } catch (e) {}
+    openLive();
+  });
   box.querySelector('.chat-close').addEventListener('click', () => { setOpen(false); launch.focus(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) { setOpen(false); launch.focus(); } });
 
-  const form = box.querySelector('.chat-form'), error = box.querySelector('.chat-error'), send = box.querySelector('.chat-send');
+  const form = box.querySelector('.chat-fallback .chat-form'), error = box.querySelector('.chat-error'), send = box.querySelector('.chat-send');
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const d = Object.fromEntries(new FormData(form));
