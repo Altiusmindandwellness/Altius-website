@@ -366,6 +366,30 @@ document.querySelectorAll('.faq-item').forEach((item, n) => {
   // Live chat through tawk.to: our button opens their chat window (replies come from the tawk.to phone app).
   // If tawk.to can't load (ad blocker, outage), the button opens the text/message box above instead.
   window.Tawk_API = window.Tawk_API || {}; window.Tawk_LoadStart = new Date();
+  // tawk.to's own chime is off, so its automatic greeting is silent.
+  // Instead we play a soft chime only when the owner replies after the visitor has written.
+  Tawk_API.disableSound = true;
+  let visitorTalked = false, audio;
+  try { visitorTalked = !!sessionStorage.getItem('altius-chat-talked'); } catch (e) {}
+  const chime = () => {
+    try {
+      audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+      if (audio.state === 'suspended') audio.resume();
+      [[880, 0], [1320, 0.16]].forEach(([freq, delay]) => {
+        const t = audio.currentTime + delay, osc = audio.createOscillator(), vol = audio.createGain();
+        osc.type = 'sine'; osc.frequency.value = freq;
+        vol.gain.setValueAtTime(0.0001, t);
+        vol.gain.exponentialRampToValueAtTime(0.18, t + 0.02);
+        vol.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
+        osc.connect(vol).connect(audio.destination); osc.start(t); osc.stop(t + 0.32);
+      });
+    } catch (e) {}
+  };
+  Tawk_API.onChatMessageVisitor = () => {
+    visitorTalked = true;
+    try { sessionStorage.setItem('altius-chat-talked', '1'); } catch (e) {}
+  };
+  Tawk_API.onChatMessageAgent = () => { if (visitorTalked) chime(); };
   const fallback = box.querySelector('.chat-fallback'), start = box.querySelector('.chat-start');
   const closeLive = () => { Tawk_API.hideWidget(); box.classList.remove('chat-live'); };
   const openLive = () => { setOpen(false); box.classList.add('chat-live'); box.querySelector('.chat-unread').hidden = true; Tawk_API.showWidget(); Tawk_API.maximize(); };
