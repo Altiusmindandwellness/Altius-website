@@ -1156,3 +1156,5 @@ button, input, select, textarea { font-family: inherit; }
 
 /* While the tawk.to live chat window is open, hide our launch button so they don't overlap */
 .chat.chat-live .chat-launch { visibility: hidden; }
+/* Unread reply count on the Chat with us button */
+.chat-unread { position: absolute; top: -6px; right: -6px; z-index: 2; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--logo-green); color: var(--white); font-size: var(--fs-caption); font-weight: 700; line-height: 22px; text-align: center; box-shadow: 0 0 0 2px var(--white); }

@@ -351,6 +351,7 @@ document.querySelectorAll('.faq-item').forEach((item, n) => {
     <button type="button" class="chat-launch" aria-expanded="false" aria-controls="chat-panel">
       <span class="chat-typing" aria-hidden="true"><i></i><i></i><i></i></span>
       <span class="chat-launch-label">Chat with us</span>
+      <span class="chat-unread" hidden></span>
     </button>`;
   document.body.append(box);
 
@@ -367,13 +368,26 @@ document.querySelectorAll('.faq-item').forEach((item, n) => {
   window.Tawk_API = window.Tawk_API || {}; window.Tawk_LoadStart = new Date();
   const fallback = box.querySelector('.chat-fallback'), start = box.querySelector('.chat-start');
   const closeLive = () => { Tawk_API.hideWidget(); box.classList.remove('chat-live'); };
-  const openLive = () => { setOpen(false); box.classList.add('chat-live'); Tawk_API.showWidget(); Tawk_API.maximize(); };
+  const openLive = () => { setOpen(false); box.classList.add('chat-live'); box.querySelector('.chat-unread').hidden = true; Tawk_API.showWidget(); Tawk_API.maximize(); };
   Tawk_API.onLoad = () => {
     tawkReady = true; fallback.hidden = true; start.hidden = false;
     // A chat left open on the last page reopens by itself: keep it open, with our button out of the way.
     if (Tawk_API.isChatMaximized()) { setOpen(false); box.classList.add('chat-live'); } else Tawk_API.hideWidget();
   };
   Tawk_API.onChatMinimized = closeLive;
+  const chatOngoing = () => tawkReady && Tawk_API.isChatOngoing && Tawk_API.isChatOngoing();
+  // tawk.to's automatic greeting flashes "1 new message" in the browser tab before anyone has chatted.
+  // Keep the page's own title until a real conversation has started.
+  const pageTitle = document.title;
+  new MutationObserver(() => { if (document.title !== pageTitle && !chatOngoing()) document.title = pageTitle; })
+    .observe(document.head, { childList: true, subtree: true, characterData: true });
+  // If we reply while the chat window is closed, show the count on the Chat with us button.
+  const unread = box.querySelector('.chat-unread');
+  Tawk_API.onUnreadCountChanged = n => {
+    const show = n > 0 && chatOngoing() && !box.classList.contains('chat-live');
+    unread.hidden = !show; unread.textContent = show ? n : '';
+    launch.setAttribute('aria-label', show ? `Chat with us, ${n} new message${n > 1 ? 's' : ''}` : 'Chat with us');
+  };
   // Tell Google a lead came in when a visitor starts a live chat. Never the visitor's details.
   Tawk_API.onChatStarted = () => { if (window.gtag) gtag('event', 'generate_lead', { form_name: 'live_chat' }); };
   const tawk = document.createElement('script');
